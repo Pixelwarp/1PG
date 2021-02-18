@@ -28,4 +28,11 @@ module.exports = new class {
   inCooldown(userId) {
     return this.cooldowns.includes(userId);
   }
+
+  async getRank(userId, guildId) {
+    const savedUsers = await users.getInGuild(guildId);
+    return savedUsers
+      .sort((a, b) => (a.coins < b.coins) ? 1 : 0)
+      .findIndex(u => u.id === userId) + 1;
+  }
 }
