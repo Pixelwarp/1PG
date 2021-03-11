@@ -16,7 +16,7 @@ export default class extends Command {
       return await msg.reply(`Prefix is \`${savedGuild.prefix}\``);
     
     savedGuild.prefix = value;
-    await savedGuild.save();
+    await savedGuild.updateOne(savedGuild);
 
     await msg.reply(`Prefix is now \`${value}\``)
   }
